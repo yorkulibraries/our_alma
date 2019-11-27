@@ -3,7 +3,7 @@ Scripts to update OUR license links in Alma e-collections
 
 # Requirements:
 * Alma API key with Electronic Read/Write and Configuration Read-only permissions.
-* CSV extract from SFX with the following fields in exact order: TARGET_SERVICE_ID,GENERAL_NOTE,TARGET_ID,TARGET_NAME
+* CSV extract from SFX with the following fields in exact order: TARGET_SERVICE_ID,GENERAL_NOTE,TARGET_ID,TARGET_NAME. York's CSV file is included as an example.
 * PHP 5.4 or higher with JSON and CURL modules
 * CURL 
 
