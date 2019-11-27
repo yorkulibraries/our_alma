@@ -20,6 +20,9 @@ if (!file_exists($work_dir) && !mkdir($work_dir, 0755, true)) {
 $output_csv_file = "$work_dir/matches.csv";
 $output_csv = fopen($output_csv_file, 'w');
 
+$no_matches_csv_file = "$work_dir/no_matches.csv";
+$no_matches_csv = fopen($no_matches_csv_file, 'w');
+
 $output_cmd_file = "$work_dir/update_cmd.txt";
 
 $count = 0;
@@ -64,7 +67,6 @@ if ( $handle = fopen($csv_file, 'r') ) {
       $match_count++;
       $c_id = $collection->id;
       $c_public_name = $collection->public_name;
-      fputcsv($output_csv, array($target_id,$target_service_id,$target_name,$c_public_name,$c_id));
 
       // write original record to json file
       $json_file = "{$work_dir}/{$c_id}.json";
@@ -86,9 +88,14 @@ if ( $handle = fopen($csv_file, 'r') ) {
         // write the curl update command to file so they can be executed as a batch/shell script
         $cmd = "curl -X PUT 'https://api-ca.hosted.exlibrisgroup.com/almaws/v1/electronic/e-collections/{$c_id}?apikey={$api_key}' -H 'accept: application/json' -H 'Content-Type: application/json' -d@{$json_file} > {$json_file}.out";
         file_put_contents($output_cmd_file, $cmd . PHP_EOL , FILE_APPEND | LOCK_EX);
+
+        fputcsv($output_csv, array($target_id,$general_note,$target_service_id,$target_name,$c_public_name,$c_id));
+      } else {
+        fputcsv($no_matches_csv, array($target_id,$general_note,$target_service_id,$target_name));
       }
       
     } else {
+      fputcsv($no_matches_csv, array($target_id,$general_note,$target_service_id,$target_name));
     }
 
     $count++;
