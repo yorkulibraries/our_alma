@@ -20,3 +20,10 @@ After running the above command, the original Electronic Collection records and 
 cd output/API_KEY
 sh update_cmd.txt
 ```
+
+# Output files:
+* nnn.json files for each record
+* nnn_update.json files for each record to update
+* matches.csv contains all records that were matched
+* no_matches.csv contains all records that do not match
+* update_cmd.txt contains all the CURL commands to PUT updated records back into Alma
