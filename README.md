@@ -9,6 +9,8 @@ Scripts to update OUR license links in Alma e-collections
 
 # Usage:
 ```
+git clone https://github.com/yorkulibraries/our_alma.git
+cd our_alma
 php extract_json.php API_KEY /path/to/sfx/collection_id_link_id.csv
 ```
 
