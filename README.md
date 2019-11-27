@@ -22,7 +22,7 @@ sh update_cmd.txt
 ```
 
 # Output files:
-* nnn.json files for each record
+* nnn.json files for each original record before the update
 * nnn_update.json files for each record to update
 * matches.csv contains all records that were matched
 * no_matches.csv contains all records that do not match
